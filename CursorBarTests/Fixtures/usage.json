@@ -1,0 +1,20 @@
+{
+  "subscriptionPlan": "Pro",
+  "daysLeftInPeriod": 12,
+  "fastRequestsUsed": 150,
+  "fastRequestsTotal": 500,
+  "optionalSpendingLimit": 20.00,
+  "optionalSpendingCurrent": 4.52,
+  "modelBreakdown": [
+    {
+      "modelName": "claude-4.6-opus",
+      "inputTokens": 1250000,
+      "outputTokens": 320000
+    },
+    {
+      "modelName": "gpt-5-fast",
+      "inputTokens": 450000,
+      "outputTokens": 110000
+    }
+  ]
+}

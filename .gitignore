@@ -1,0 +1,41 @@
+# Xcode / Make
+build/
+DerivedData/
+.derivedData/
+*.profraw
+CursorBar.app
+dist/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+*.xcscmblueprint
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Devbox
+.devbox/
+devbox.lock
+
+# Secrets
+.env
+.env.*
+*.pem

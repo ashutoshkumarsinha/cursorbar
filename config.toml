@@ -1,0 +1,25 @@
+# CursorBar — local configuration (defaults)
+# For a portable setup, copy config.toml.example to ~/.cursorbar/config.toml
+
+[app]
+version = 1
+
+[polling]
+refresh_interval_minutes = 15
+pause_on_sleep = true
+sync_on_wake = true
+
+[menu_bar]
+display_spending = false
+
+[api]
+base_url = "https://www.cursor.com/api/usage"
+user_agent = "CursorBar/1.0 (macOS; Native Utility)"
+
+[gauge]
+red_requests_remaining = 50
+orange_quota_percent = 20
+orange_spend_percent = 80
+
+[logging]
+level = "info"

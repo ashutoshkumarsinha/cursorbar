@@ -1,0 +1,38 @@
+# CursorBar — application configuration
+# Copy to ~/.cursorbar/config.toml or set CURSORBAR_CONFIG to this file.
+#
+# Session tokens are NOT stored here. Use the app Preferences UI or Keychain.
+# Only non-secret settings belong in this file.
+
+[app]
+version = 1
+
+[polling]
+# How often to fetch usage from cursor.com (minutes).
+# Allowed values: 5, 15, 30
+refresh_interval_minutes = 15
+
+# Pause background polling while the Mac is asleep.
+pause_on_sleep = true
+
+# Run an immediate sync when the Mac wakes.
+sync_on_wake = true
+
+[menu_bar]
+# false = show remaining Fast Requests (e.g. "350")
+# true  = show optional pay-as-you-go spend (e.g. "$4.52")
+display_spending = false
+
+[api]
+base_url = "https://www.cursor.com/api/usage"
+user_agent = "CursorBar/1.0 (macOS; Native Utility)"
+
+[gauge]
+# Menu bar color thresholds (see docs/SPEC.md).
+red_requests_remaining = 50
+orange_quota_percent = 20
+orange_spend_percent = 80
+
+[logging]
+# debug | info | warning | error
+level = "info"

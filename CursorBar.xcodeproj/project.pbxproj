@@ -1,0 +1,520 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000010000000000000001 /* CursorBarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000001 /* CursorBarApp.swift */; };
+		A10000010000000000000002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000002 /* AppDelegate.swift */; };
+		A10000010000000000000003 /* UsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000003 /* UsageData.swift */; };
+		A10000010000000000000004 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000004 /* KeychainService.swift */; };
+		A10000010000000000000005 /* CursorAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000005 /* CursorAPIService.swift */; };
+		A10000010000000000000006 /* SleepMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000006 /* SleepMonitor.swift */; };
+		A10000010000000000000007 /* UsageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000007 /* UsageStore.swift */; };
+		A10000010000000000000008 /* MenuBarLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000008 /* MenuBarLabelView.swift */; };
+		A10000010000000000000009 /* PopoverContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000009 /* PopoverContentView.swift */; };
+		A1000001000000000000000A /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000000A /* PreferencesView.swift */; };
+		A1000001000000000000000B /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000000B /* AuthenticationView.swift */; };
+		A1000001000000000000000C /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000000C /* StatusBarController.swift */; };
+		A1000001000000000000000D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000000D /* Assets.xcassets */; };
+		A1000001000000000000000E /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000011 /* AppConfig.swift */; };
+		A1000001000000000000000F /* ConfigLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000012 /* ConfigLoader.swift */; };
+		B10000010000000000000001 /* ConfigLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000001 /* ConfigLoaderTests.swift */; };
+		B10000010000000000000002 /* GaugeStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000002 /* GaugeStatusTests.swift */; };
+		B10000010000000000000003 /* UsageResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000003 /* UsageResponseTests.swift */; };
+		B10000010000000000000004 /* CursorAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000004 /* CursorAPIServiceTests.swift */; };
+		B10000010000000000000005 /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000005 /* KeychainServiceTests.swift */; };
+		B10000010000000000000006 /* LiveAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000006 /* LiveAPITests.swift */; };
+		B10000010000000000000007 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000007 /* MockURLProtocol.swift */; };
+		B10000010000000000000008 /* usage.json in Resources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000008 /* usage.json */; };
+		A10000010000000000000010 /* UITestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000013 /* UITestSupport.swift */; };
+		B10000010000000000000009 /* OnboardingFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000001000000000000000A /* OnboardingFlowTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B40000010000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A70000010000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A50000010000000000000001;
+			remoteInfo = CursorBar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A20000010000000000000001 /* CursorBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursorBarApp.swift; sourceTree = "<group>"; };
+		A20000010000000000000002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A20000010000000000000003 /* UsageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageData.swift; sourceTree = "<group>"; };
+		A20000010000000000000004 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		A20000010000000000000005 /* CursorAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursorAPIService.swift; sourceTree = "<group>"; };
+		A20000010000000000000006 /* SleepMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepMonitor.swift; sourceTree = "<group>"; };
+		A20000010000000000000007 /* UsageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageStore.swift; sourceTree = "<group>"; };
+		A20000010000000000000008 /* MenuBarLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarLabelView.swift; sourceTree = "<group>"; };
+		A20000010000000000000009 /* PopoverContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverContentView.swift; sourceTree = "<group>"; };
+		A2000001000000000000000A /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		A2000001000000000000000B /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		A2000001000000000000000C /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		A2000001000000000000000D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A2000001000000000000000E /* CursorBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CursorBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2000001000000000000000F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A20000010000000000000010 /* CursorBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CursorBar.entitlements; sourceTree = "<group>"; };
+		A20000010000000000000011 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		A20000010000000000000012 /* ConfigLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigLoader.swift; sourceTree = "<group>"; };
+		A20000010000000000000013 /* UITestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestSupport.swift; sourceTree = "<group>"; };
+		B20000010000000000000001 /* ConfigLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigLoaderTests.swift; sourceTree = "<group>"; };
+		B20000010000000000000002 /* GaugeStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeStatusTests.swift; sourceTree = "<group>"; };
+		B20000010000000000000003 /* UsageResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageResponseTests.swift; sourceTree = "<group>"; };
+		B20000010000000000000004 /* CursorAPIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursorAPIServiceTests.swift; sourceTree = "<group>"; };
+		B20000010000000000000005 /* KeychainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceTests.swift; sourceTree = "<group>"; };
+		B20000010000000000000006 /* LiveAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveAPITests.swift; sourceTree = "<group>"; };
+		B20000010000000000000007 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		B20000010000000000000008 /* usage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = usage.json; sourceTree = "<group>"; };
+		B20000010000000000000009 /* CursorBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CursorBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2000001000000000000000A /* OnboardingFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A30000010000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B30000010000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A40000010000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				A40000010000000000000002 /* CursorBar */,
+				B40000010000000000000002 /* CursorBarTests */,
+				A40000010000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A40000010000000000000002 /* CursorBar */ = {
+			isa = PBXGroup;
+			children = (
+				A40000010000000000000004 /* App */,
+				A40000010000000000000005 /* Models */,
+				A40000010000000000000006 /* Services */,
+				A40000010000000000000007 /* Views */,
+				A40000010000000000000008 /* Controllers */,
+				A40000010000000000000009 /* Resources */,
+				A20000010000000000000010 /* CursorBar.entitlements */,
+			);
+			path = CursorBar;
+			sourceTree = "<group>";
+		};
+		A40000010000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A2000001000000000000000E /* CursorBar.app */,
+				B20000010000000000000009 /* CursorBarTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A40000010000000000000004 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000001 /* CursorBarApp.swift */,
+				A20000010000000000000002 /* AppDelegate.swift */,
+				A20000010000000000000013 /* UITestSupport.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A40000010000000000000005 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000003 /* UsageData.swift */,
+				A20000010000000000000011 /* AppConfig.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A40000010000000000000006 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000004 /* KeychainService.swift */,
+				A20000010000000000000005 /* CursorAPIService.swift */,
+				A20000010000000000000006 /* SleepMonitor.swift */,
+				A20000010000000000000007 /* UsageStore.swift */,
+				A20000010000000000000012 /* ConfigLoader.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A40000010000000000000007 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010000000000000008 /* MenuBarLabelView.swift */,
+				A20000010000000000000009 /* PopoverContentView.swift */,
+				A2000001000000000000000A /* PreferencesView.swift */,
+				A2000001000000000000000B /* AuthenticationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A40000010000000000000008 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A2000001000000000000000C /* StatusBarController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A40000010000000000000009 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A2000001000000000000000D /* Assets.xcassets */,
+				A2000001000000000000000F /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B40000010000000000000002 /* CursorBarTests */ = {
+			isa = PBXGroup;
+			children = (
+				B20000010000000000000001 /* ConfigLoaderTests.swift */,
+				B20000010000000000000002 /* GaugeStatusTests.swift */,
+				B20000010000000000000003 /* UsageResponseTests.swift */,
+				B20000010000000000000004 /* CursorAPIServiceTests.swift */,
+				B20000010000000000000005 /* KeychainServiceTests.swift */,
+				B20000010000000000000006 /* LiveAPITests.swift */,
+				B20000010000000000000007 /* MockURLProtocol.swift */,
+				B2000001000000000000000A /* OnboardingFlowTests.swift */,
+				B40000010000000000000003 /* Fixtures */,
+			);
+			path = CursorBarTests;
+			sourceTree = "<group>";
+		};
+		B40000010000000000000003 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				B20000010000000000000008 /* usage.json */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A50000010000000000000001 /* CursorBar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A60000010000000000000003 /* Build configuration list for PBXNativeTarget "CursorBar" */;
+			buildPhases = (
+				A50000010000000000000002 /* Sources */,
+				A30000010000000000000001 /* Frameworks */,
+				A50000010000000000000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CursorBar;
+			productName = CursorBar;
+			productReference = A2000001000000000000000E /* CursorBar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B50000010000000000000001 /* CursorBarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B60000010000000000000001 /* Build configuration list for PBXNativeTarget "CursorBarTests" */;
+			buildPhases = (
+				B50000010000000000000002 /* Sources */,
+				B30000010000000000000001 /* Frameworks */,
+				B50000010000000000000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B50000010000000000000004 /* PBXTargetDependency */,
+			);
+			name = CursorBarTests;
+			productName = CursorBarTests;
+			productReference = B20000010000000000000009 /* CursorBarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A70000010000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					A50000010000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					B50000010000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = A50000010000000000000001;
+					};
+				};
+			};
+			buildConfigurationList = A60000010000000000000001 /* Build configuration list for PBXProject "CursorBar" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A40000010000000000000001;
+			productRefGroup = A40000010000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A50000010000000000000001 /* CursorBar */,
+				B50000010000000000000001 /* CursorBarTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A50000010000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000001000000000000000D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B50000010000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000010000000000000008 /* usage.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A50000010000000000000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000010000000000000001 /* CursorBarApp.swift in Sources */,
+				A10000010000000000000002 /* AppDelegate.swift in Sources */,
+				A10000010000000000000003 /* UsageData.swift in Sources */,
+				A10000010000000000000004 /* KeychainService.swift in Sources */,
+				A10000010000000000000005 /* CursorAPIService.swift in Sources */,
+				A10000010000000000000006 /* SleepMonitor.swift in Sources */,
+				A10000010000000000000007 /* UsageStore.swift in Sources */,
+				A10000010000000000000008 /* MenuBarLabelView.swift in Sources */,
+				A10000010000000000000009 /* PopoverContentView.swift in Sources */,
+				A1000001000000000000000A /* PreferencesView.swift in Sources */,
+				A1000001000000000000000B /* AuthenticationView.swift in Sources */,
+				A1000001000000000000000C /* StatusBarController.swift in Sources */,
+				A1000001000000000000000E /* AppConfig.swift in Sources */,
+				A1000001000000000000000F /* ConfigLoader.swift in Sources */,
+				A10000010000000000000010 /* UITestSupport.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B50000010000000000000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000010000000000000001 /* ConfigLoaderTests.swift in Sources */,
+				B10000010000000000000002 /* GaugeStatusTests.swift in Sources */,
+				B10000010000000000000003 /* UsageResponseTests.swift in Sources */,
+				B10000010000000000000004 /* CursorAPIServiceTests.swift in Sources */,
+				B10000010000000000000005 /* KeychainServiceTests.swift in Sources */,
+				B10000010000000000000006 /* LiveAPITests.swift in Sources */,
+				B10000010000000000000007 /* MockURLProtocol.swift in Sources */,
+				B10000010000000000000009 /* OnboardingFlowTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B50000010000000000000004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A50000010000000000000001 /* CursorBar */;
+			targetProxy = B40000010000000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A80000010000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A80000010000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		A80000010000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CursorBar/CursorBar.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CursorBar/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cursorbar.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A80000010000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CursorBar/CursorBar.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CursorBar/Resources/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cursorbar.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		B80000010000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cursorbar.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CursorBar.app/Contents/MacOS/CursorBar";
+			};
+			name = Debug;
+		};
+		B80000010000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cursorbar.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CursorBar.app/Contents/MacOS/CursorBar";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A60000010000000000000001 /* Build configuration list for PBXProject "CursorBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80000010000000000000001 /* Debug */,
+				A80000010000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A60000010000000000000003 /* Build configuration list for PBXNativeTarget "CursorBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80000010000000000000003 /* Debug */,
+				A80000010000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B60000010000000000000001 /* Build configuration list for PBXNativeTarget "CursorBarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B80000010000000000000001 /* Debug */,
+				B80000010000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A70000010000000000000001 /* Project object */;
+}
