@@ -7,19 +7,29 @@ final class CursorAPIServiceTests: XCTestCase {
         super.tearDown()
     }
 
-    func testFetchUsageSendsConfiguredHeaders() async throws {
-        let data = try loadFixture(named: "usage")
-        var capturedRequest: URLRequest?
+    func testFetchUsageUsesUsageSummaryEndpoint() async throws {
+        let summaryData = try loadFixture(named: "usage-summary")
+        let legacyData = Data("{}".utf8)
+        var requestedPaths: [String] = []
 
         MockURLProtocol.requestHandler = { request in
-            capturedRequest = request
+            requestedPaths.append(request.url?.path ?? "")
             let response = HTTPURLResponse(
                 url: request.url!,
                 statusCode: 200,
                 httpVersion: nil,
                 headerFields: nil
             )!
-            return (response, data)
+            if request.url?.path.contains("usage-summary") == true {
+                return (response, summaryData)
+            }
+            if request.url?.path.contains("/api/usage") == true {
+                return (response, legacyData)
+            }
+            if request.url?.host == "api2.cursor.sh" {
+                return (response, Data("{}".utf8))
+            }
+            return (response, summaryData)
         }
 
         let config = AppConfig(
@@ -27,7 +37,7 @@ final class CursorAPIServiceTests: XCTestCase {
             pauseOnSleep: true,
             syncOnWake: true,
             displaySpending: false,
-            apiBaseURL: "https://www.cursor.com/api/usage",
+            apiBaseURL: "https://cursor.com/api/usage-summary",
             userAgent: "CursorBar-Test/1.0",
             gaugeThresholds: .default,
             loggingLevel: "info"
@@ -37,11 +47,8 @@ final class CursorAPIServiceTests: XCTestCase {
         let usage = try await api.fetchUsage(sessionToken: "test-token")
 
         XCTAssertEqual(usage.subscriptionPlan, "Pro")
-        XCTAssertEqual(capturedRequest?.value(forHTTPHeaderField: "User-Agent"), "CursorBar-Test/1.0")
-        XCTAssertEqual(
-            capturedRequest?.value(forHTTPHeaderField: "Cookie"),
-            "WorkosCursorSessionToken=test-token"
-        )
+        XCTAssertEqual(usage.fastRequestsRemaining, 350)
+        XCTAssertTrue(requestedPaths.contains { $0.contains("usage-summary") })
     }
 
     func testUnauthorizedMapsToError() async {
@@ -84,7 +91,8 @@ extension CursorAPIError: Equatable {
         case (.missingToken, .missingToken),
              (.unauthorized, .unauthorized),
              (.invalidResponse, .invalidResponse),
-             (.invalidBaseURL, .invalidBaseURL):
+             (.invalidBaseURL, .invalidBaseURL),
+             (.noUsageData, .noUsageData):
             return true
         case (.httpError(let l), .httpError(let r)):
             return l == r

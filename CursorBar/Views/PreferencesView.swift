@@ -45,7 +45,7 @@ struct PreferencesView: View {
 
             Section("About") {
                 LabeledContent("Version", value: "1.0.0")
-                LabeledContent("Endpoint", value: "cursor.com/api/usage")
+                LabeledContent("Endpoint", value: "cursor.com/api/usage-summary")
             }
         }
         .formStyle(.grouped)

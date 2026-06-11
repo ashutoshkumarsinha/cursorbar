@@ -3,6 +3,11 @@ import XCTest
 
 @MainActor
 final class OnboardingFlowTests: XCTestCase {
+    override func tearDown() {
+        MockURLProtocol.requestHandler = nil
+        super.tearDown()
+    }
+
     func testStoreStartsExpiredWhenKeychainEmpty() {
         let keychain = KeychainService(
             service: "com.cursorbar.tests.\(UUID().uuidString)",
@@ -18,8 +23,8 @@ final class OnboardingFlowTests: XCTestCase {
         XCTAssertEqual(store.gaugeStatus, .warning)
     }
 
-    func testSaveTokenTransitionsToLoadingThenSuccess() async throws {
-        let data = try Data(contentsOf: fixtureURL(named: "usage"))
+    func testSaveTokenTransitionsToSuccess() async throws {
+        let summaryData = try Data(contentsOf: fixtureURL(named: "usage-summary"))
         MockURLProtocol.requestHandler = { request in
             let response = HTTPURLResponse(
                 url: request.url!,
@@ -27,7 +32,10 @@ final class OnboardingFlowTests: XCTestCase {
                 httpVersion: nil,
                 headerFields: nil
             )!
-            return (response, data)
+            if request.url?.path.contains("usage-summary") == true {
+                return (response, summaryData)
+            }
+            return (response, Data("{}".utf8))
         }
 
         let keychain = KeychainService(

@@ -27,7 +27,7 @@ struct AppConfig: Equatable {
         pauseOnSleep: true,
         syncOnWake: true,
         displaySpending: false,
-        apiBaseURL: "https://www.cursor.com/api/usage",
+        apiBaseURL: "https://cursor.com/api/usage-summary",
         userAgent: "CursorBar/1.0 (macOS; Native Utility)",
         gaugeThresholds: .default,
         loggingLevel: "info"
