@@ -94,9 +94,9 @@ final class UsageStore: ObservableObject {
     }
 
     func saveSessionToken(_ token: String) throws {
-        let trimmed = token.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return }
-        try keychain.saveSessionToken(trimmed)
+        let normalized = SessionTokenNormalizer.cookieValue(from: token)
+        guard !normalized.isEmpty else { return }
+        try keychain.saveSessionToken(normalized)
         Task { await syncNow() }
         resumePolling()
     }
@@ -110,10 +110,11 @@ final class UsageStore: ObservableObject {
     func syncNow() async {
         guard !sleepMonitor.isAsleep else { return }
 
-        guard let token = try? keychain.readSessionToken(), !token.isEmpty else {
+        guard let stored = try? keychain.readSessionToken(), !stored.isEmpty else {
             state = .sessionExpired
             return
         }
+        let token = SessionTokenNormalizer.cookieValue(from: stored)
 
         if case .success = state {
             // Keep showing last good data while refreshing.

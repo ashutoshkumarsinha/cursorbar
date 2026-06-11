@@ -27,12 +27,13 @@ struct AuthenticationView: View {
                     step(1, "Open cursor.com and sign in")
                     step(2, "Open DevTools → Application → Cookies")
                     step(3, "Copy the value of WorkosCursorSessionToken")
+                    step(4, "Or paste your JWT access token — CursorBar will format it automatically")
                 }
                 .font(.caption)
                 .foregroundStyle(.secondary)
             }
 
-            SecureField("Paste WorkosCursorSessionToken", text: $sessionToken)
+            SecureField("Paste session token", text: $sessionToken)
                 .textFieldStyle(.roundedBorder)
 
             if !errorMessage.isEmpty {

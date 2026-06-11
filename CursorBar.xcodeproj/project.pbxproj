@@ -35,6 +35,7 @@
 		A10000010000000000000011 /* UsageSummaryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000014 /* UsageSummaryResponse.swift */; };
 		B1000001000000000000000A /* UsageSummaryMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000001000000000000000B /* UsageSummaryMapperTests.swift */; };
 		B1000001000000000000000B /* usage-summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B2000001000000000000000C /* usage-summary.json */; };
+		B1000001000000000000000C /* SessionTokenNormalizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000001000000000000000D /* SessionTokenNormalizerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		A20000010000000000000014 /* UsageSummaryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageSummaryResponse.swift; sourceTree = "<group>"; };
 		B2000001000000000000000B /* UsageSummaryMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageSummaryMapperTests.swift; sourceTree = "<group>"; };
 		B2000001000000000000000C /* usage-summary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = usage-summary.json; sourceTree = "<group>"; };
+		B2000001000000000000000D /* SessionTokenNormalizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTokenNormalizerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				B20000010000000000000002 /* GaugeStatusTests.swift */,
 				B20000010000000000000003 /* UsageResponseTests.swift */,
 				B20000010000000000000004 /* CursorAPIServiceTests.swift */,
+				B2000001000000000000000D /* SessionTokenNormalizerTests.swift */,
 				B20000010000000000000005 /* KeychainServiceTests.swift */,
 				B20000010000000000000006 /* LiveAPITests.swift */,
 				B20000010000000000000007 /* MockURLProtocol.swift */,
@@ -346,6 +349,7 @@
 				B10000010000000000000002 /* GaugeStatusTests.swift in Sources */,
 				B10000010000000000000003 /* UsageResponseTests.swift in Sources */,
 				B10000010000000000000004 /* CursorAPIServiceTests.swift in Sources */,
+				B1000001000000000000000C /* SessionTokenNormalizerTests.swift in Sources */,
 				B10000010000000000000005 /* KeychainServiceTests.swift in Sources */,
 				B10000010000000000000006 /* LiveAPITests.swift in Sources */,
 				B10000010000000000000007 /* MockURLProtocol.swift in Sources */,

@@ -48,56 +48,80 @@ final class CursorAPIService {
     }
 
     func fetchUsage(sessionToken: String) async throws -> UsageResponse {
-        async let summaryTask = fetchSummary(sessionToken: sessionToken)
-        async let legacyTask = fetchLegacyUsage(sessionToken: sessionToken)
-        async let periodTask = fetchCurrentPeriodUsage(sessionToken: sessionToken)
+        let cookie = SessionTokenNormalizer.cookieValue(from: sessionToken)
+        let bearer = SessionTokenNormalizer.bearerToken(from: sessionToken)
 
-        let summary = try await summaryTask
-        let legacy = try? await legacyTask
-        let period = try? await periodTask
+        async let summaryResult = fetchSummaryIfPossible(cookie: cookie)
+        async let legacyResult = fetchLegacyIfPossible(cookie: cookie)
+        async let periodResult = fetchPeriodIfPossible(bearer: bearer)
 
-        return UsageResponseMapper.from(summary: summary, period: period, legacy: legacy)
+        let (summary, summaryError) = await summaryResult
+        let legacy = await legacyResult
+        let period = await periodResult
+
+        if summary != nil || legacy != nil || period != nil {
+            return UsageResponseMapper.from(
+                summary: summary ?? .empty,
+                period: period,
+                legacy: legacy
+            )
+        }
+
+        if let summaryError {
+            throw summaryError
+        }
+        throw CursorAPIError.noUsageData
     }
 
     // MARK: - usage-summary
 
-    private func fetchSummary(sessionToken: String) async throws -> UsageSummaryResponse {
-        try await get(
-            url: summaryURL,
-            sessionToken: sessionToken,
-            as: UsageSummaryResponse.self
-        )
+    private func fetchSummaryIfPossible(cookie: String) async -> (UsageSummaryResponse?, CursorAPIError?) {
+        do {
+            let summary = try await get(
+                url: summaryURL,
+                cookie: cookie,
+                as: UsageSummaryResponse.self
+            )
+            return (summary, nil)
+        } catch let error as CursorAPIError {
+            return (nil, error)
+        } catch {
+            return (nil, .decodingFailed(error))
+        }
     }
 
     // MARK: - legacy /api/usage (model breakdown + enterprise requests)
 
-    private func fetchLegacyUsage(sessionToken: String) async throws -> LegacyUsageResponse {
-        try await get(
+    private func fetchLegacyIfPossible(cookie: String) async -> LegacyUsageResponse? {
+        try? await get(
             url: legacyUsageURL,
-            sessionToken: sessionToken,
+            cookie: cookie,
             as: LegacyUsageResponse.self
         )
     }
 
     // MARK: - Connect RPC spend plans
 
-    private func fetchCurrentPeriodUsage(sessionToken: String) async throws -> CurrentPeriodUsageResponse {
+    private func fetchPeriodIfPossible(bearer: String?) async -> CurrentPeriodUsageResponse? {
+        guard let bearer, !bearer.isEmpty else { return nil }
+
         var request = URLRequest(url: periodUsageURL)
         request.httpMethod = "POST"
         request.httpBody = Data("{}".utf8)
-        applyAuthHeaders(&request, sessionToken: sessionToken)
+        request.setValue("Bearer \(bearer)", forHTTPHeaderField: "Authorization")
+        request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("1", forHTTPHeaderField: "Connect-Protocol-Version")
         request.setValue("https://cursor.com", forHTTPHeaderField: "Origin")
         request.setValue("https://cursor.com/dashboard/usage", forHTTPHeaderField: "Referer")
 
-        let (data, response) = try await session.data(for: request)
-        try validateHTTP(response)
-
         do {
+            let (data, response) = try await session.data(for: request)
+            try validateHTTP(response)
+            try validatePayload(data)
             return try JSONDecoder().decode(CurrentPeriodUsageResponse.self, from: data)
         } catch {
-            throw CursorAPIError.decodingFailed(error)
+            return nil
         }
     }
 
@@ -105,15 +129,16 @@ final class CursorAPIService {
 
     private func get<T: Decodable>(
         url: URL,
-        sessionToken: String,
+        cookie: String,
         as type: T.Type
     ) async throws -> T {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        applyAuthHeaders(&request, sessionToken: sessionToken)
+        applyCookieAuth(&request, cookie: cookie)
 
         let (data, response) = try await session.data(for: request)
         try validateHTTP(response)
+        try validatePayload(data)
 
         do {
             return try JSONDecoder().decode(T.self, from: data)
@@ -122,14 +147,24 @@ final class CursorAPIService {
         }
     }
 
-    private func applyAuthHeaders(_ request: inout URLRequest, sessionToken: String) {
+    private func applyCookieAuth(_ request: inout URLRequest, cookie: String) {
         request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(
-            "WorkosCursorSessionToken=\(sessionToken)",
+            "WorkosCursorSessionToken=\(cookie)",
             forHTTPHeaderField: "Cookie"
         )
         request.setValue("https://cursor.com/dashboard/usage", forHTTPHeaderField: "Referer")
+    }
+
+    private func validatePayload(_ data: Data) throws {
+        guard
+            let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+            object["error"] != nil
+        else {
+            return
+        }
+        throw CursorAPIError.unauthorized
     }
 
     private func validateHTTP(_ response: URLResponse) throws {
@@ -148,13 +183,77 @@ final class CursorAPIService {
     }
 
     private static func resolveURL(_ configured: String, fallback: String) -> URL {
-        let normalized = configured
+        var normalized = configured
+            .trimmingCharacters(in: .whitespacesAndNewlines)
             .replacingOccurrences(of: "www.cursor.com", with: "cursor.com")
-            .replacingOccurrences(of: "/api/usage", with: "/api/usage-summary")
 
-        if let url = URL(string: normalized), normalized.contains("usage-summary") {
+        if normalized.contains("usage-summary") {
+            // Already on the current endpoint — do not rewrite (avoids usage-summary-summary).
+        } else if normalized.hasSuffix("/api/usage") {
+            normalized = String(normalized.dropLast("/api/usage".count)) + "/api/usage-summary"
+        } else if normalized.isEmpty {
+            normalized = fallback
+        }
+
+        if let url = URL(string: normalized) {
             return url
         }
         return URL(string: fallback)!
+    }
+}
+
+// MARK: - Session token normalization
+
+enum SessionTokenNormalizer {
+    /// Cookie value for cursor.com REST endpoints (`userId%3A%3A<jwt>`).
+    static func cookieValue(from raw: String) -> String {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.contains("%3A%3A") {
+            return trimmed
+        }
+        if trimmed.contains("::") {
+            return trimmed.replacingOccurrences(of: "::", with: "%3A%3A")
+        }
+        if trimmed.hasPrefix("eyJ"), let userID = jwtUserID(from: trimmed) {
+            return "\(userID)%3A%3A\(trimmed)"
+        }
+        return trimmed
+    }
+
+    /// JWT for api2.cursor.sh Connect RPC endpoints.
+    static func bearerToken(from raw: String) -> String? {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        if let range = trimmed.range(of: "%3A%3A") {
+            return String(trimmed[range.upperBound...])
+        }
+        if let range = trimmed.range(of: "::") {
+            return String(trimmed[range.upperBound...])
+        }
+        if trimmed.hasPrefix("eyJ") {
+            return trimmed
+        }
+        return nil
+    }
+
+    private static func jwtUserID(from jwt: String) -> String? {
+        let segments = jwt.split(separator: ".")
+        guard segments.count >= 2 else { return nil }
+
+        var payload = String(segments[1])
+            .replacingOccurrences(of: "-", with: "+")
+            .replacingOccurrences(of: "_", with: "/")
+        payload += String(repeating: "=", count: (4 - payload.count % 4) % 4)
+        guard
+            let data = Data(base64Encoded: payload),
+            let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+            let subject = json["sub"] as? String
+        else {
+            return nil
+        }
+
+        if let pipe = subject.lastIndex(of: "|") {
+            return String(subject[subject.index(after: pipe)...])
+        }
+        return subject
     }
 }

@@ -3,11 +3,19 @@ import Foundation
 // MARK: - GET /api/usage-summary (current dashboard API)
 
 struct UsageSummaryResponse: Codable {
-    let billingCycleStart: String
-    let billingCycleEnd: String
-    let membershipType: String
+    let billingCycleStart: String?
+    let billingCycleEnd: String?
+    let membershipType: String?
     let individualUsage: IndividualUsageSummary?
     let teamUsage: TeamUsageSummary?
+
+    static let empty = UsageSummaryResponse(
+        billingCycleStart: nil,
+        billingCycleEnd: nil,
+        membershipType: nil,
+        individualUsage: nil,
+        teamUsage: nil
+    )
 }
 
 struct IndividualUsageSummary: Codable {
@@ -120,8 +128,16 @@ enum UsageResponseMapper {
         period: CurrentPeriodUsageResponse? = nil,
         legacy: LegacyUsageResponse? = nil
     ) -> UsageResponse {
-        let planName = capitalizePlan(summary.membershipType)
-        let daysLeft = daysUntil(endISO: summary.billingCycleEnd)
+        let planName = capitalizePlan(
+            summary.membershipType
+                ?? period?.membershipType
+                ?? "unknown"
+        )
+        let daysLeft = daysUntil(
+            endISO: summary.billingCycleEnd
+                ?? period?.billingCycleEnd
+                ?? ""
+        )
 
         var used = summary.individualUsage?.plan?.used ?? 0
         var total = summary.individualUsage?.plan?.limit ?? 0
@@ -170,6 +186,13 @@ enum UsageResponseMapper {
     }
 
     private static func daysUntil(endISO: String) -> Int {
+        guard !endISO.isEmpty else { return 0 }
+
+        if let millis = Int64(endISO) {
+            let end = Date(timeIntervalSince1970: TimeInterval(millis) / 1000)
+            return max(0, Calendar.current.dateComponents([.day], from: Date(), to: end).day ?? 0)
+        }
+
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         var end = formatter.date(from: endISO)
